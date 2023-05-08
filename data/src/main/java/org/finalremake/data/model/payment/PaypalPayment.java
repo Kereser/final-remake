@@ -8,8 +8,8 @@ import jakarta.persistence.OneToOne;
 public class PaypalPayment extends AbstractPayment {
 
     @OneToOne
-    @JoinColumn(nullable = false)
-    private Payment payment_id;
+    @JoinColumn(name = "payment_id", nullable = false)
+    private Payment payment;
 
     @Override
     public String getAccountNumber() {
