@@ -21,7 +21,7 @@
 	<description>Final project for Ap remake version.</description>
 
 	<properties>
-		<java.version>18</java.version>
+		<java.version>17</java.version>
 		<revision>0.0.1-SNAPSHOT</revision>
 	</properties>
 
