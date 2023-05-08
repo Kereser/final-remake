@@ -21,9 +21,9 @@ public class Checkout extends AbstractEntity {
     private Payment payment;
 
     @ElementCollection
-    @CollectionTable(name = "checkout_product_mapping",
-    joinColumns = {@JoinColumn(name = "checkout_id", referencedColumnName = "id", nullable = false)})
+    @CollectionTable(name = "product_quantity",
+    joinColumns = {@JoinColumn(name = "checkout_id")})
     @MapKeyColumn(name = "product_id")
     @Column(name = "quantity")
-    private Map<String, Integer> productQuantity;
+    private Map<Long, Integer> productQuantity;
 }
