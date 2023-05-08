@@ -1,10 +1,13 @@
 package org.finalremake.data.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.springframework.format.annotation.NumberFormat;
+
+import java.util.List;
 
 @Entity
 public class Customer extends AbstractEntity {
@@ -21,4 +24,7 @@ public class Customer extends AbstractEntity {
     private Integer phone;
 
     private Integer age;
+
+    @OneToOne(mappedBy = "customer")
+    private List<Address> addresses;
 }
