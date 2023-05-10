@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.final-remake.app</groupId>
     <artifactId>app</artifactId>
-    <name>app</name>
+    <name>Final App API Resource Server</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -21,9 +20,9 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.final-remake.data</groupId>
+            <groupId>org.final-remake</groupId>
             <artifactId>data</artifactId>
-            <version>${project.version}</version>
+            <version>{revision}</version>
         </dependency>
 
         <dependency>
@@ -47,5 +46,14 @@
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

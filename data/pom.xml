@@ -9,9 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.final-remake.data</groupId>
     <artifactId>data</artifactId>
-    <name>data</name>
+    <name>Data module</name>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
