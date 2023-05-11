@@ -1,0 +1,21 @@
+package org.finalremake.data.dto.customer;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+import org.finalremake.data.dto.AbstractDTO;
+import org.finalremake.data.dto.address.AddressResponseDTO;
+
+import java.util.List;
+
+@Builder
+@Getter
+@Setter
+public class CustomerResponseDTO extends AbstractDTO {
+    private String name;
+    private String surname;
+    private String email;
+    private String phone;
+    private Integer age;
+    private List<AddressResponseDTO> addresses;
+}
