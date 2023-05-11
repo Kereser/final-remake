@@ -3,9 +3,11 @@ package org.finalremake.data.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import org.finalremake.data.model.payment.Payment;
 
 @Entity
+@Table(name = "orders")
 public class Order extends AbstractEntity {
     @OneToOne
     @JoinColumn(name = "checkout_id", referencedColumnName = "id", nullable = false)
