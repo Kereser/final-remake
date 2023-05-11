@@ -1,9 +1,12 @@
-package org.finalremake.data.model;
+package org.finalremake.data.model.order;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import org.finalremake.data.model.AbstractEntity;
+import org.finalremake.data.model.Delivery;
+import org.finalremake.data.model.checkout.Checkout;
 import org.finalremake.data.model.payment.Payment;
 
 @Entity

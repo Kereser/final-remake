@@ -1,9 +1,11 @@
-package org.finalremake.data.model;
+package org.finalremake.data.model.address;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
+import org.finalremake.data.model.AbstractEntity;
+import org.finalremake.data.model.customer.Customer;
 
 @Entity
 public class Address extends AbstractEntity {

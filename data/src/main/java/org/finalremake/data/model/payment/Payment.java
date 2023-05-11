@@ -4,7 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import org.finalremake.data.model.AbstractEntity;
-import org.finalremake.data.model.Customer;
+import org.finalremake.data.model.customer.Customer;
 
 @Entity
 public class Payment extends AbstractEntity {
