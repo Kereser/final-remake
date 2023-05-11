@@ -2,6 +2,7 @@ package org.finalremake.data.model;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -26,4 +27,7 @@ public class Customer extends AbstractEntity {
 
     @OneToMany(mappedBy = "customer")
     private List<Address> addresses;
+
+    @OneToOne(mappedBy = "customer")
+    private Checkout checkout;
 }
