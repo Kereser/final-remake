@@ -1,13 +1,12 @@
 package org.finalremake.data.model.payment;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.customer.Customer;
 
 @Entity
 public class Payment extends AbstractEntity {
+    @Enumerated(EnumType.STRING)
     private PaymentType name;
 
     @ManyToOne
