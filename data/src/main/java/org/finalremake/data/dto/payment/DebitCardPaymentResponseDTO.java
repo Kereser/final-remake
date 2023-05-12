@@ -8,7 +8,7 @@ import org.finalremake.data.dto.AbstractDTO;
 @Builder
 @Getter
 @Setter
-public class CreditCardPaymentResponseDTO extends AbstractDTO {
+public class DebitCardPaymentResponseDTO extends AbstractDTO {
     private String ACCOUNT_NUMBER;
     private PaymentResponseDTO paymentResponseDTO;
 }
