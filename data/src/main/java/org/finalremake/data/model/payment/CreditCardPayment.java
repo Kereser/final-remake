@@ -5,11 +5,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.NotNull;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 @Entity
+@Builder
+@AllArgsConstructor
+@Getter
+@Setter
+@NoArgsConstructor
 public class CreditCardPayment extends AbstractPayment {
     @NotNull
     @Future
