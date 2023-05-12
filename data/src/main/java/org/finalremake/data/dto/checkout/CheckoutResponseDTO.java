@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.finalremake.data.dto.AbstractDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.dto.customer.CustomerResponseDTO;
-import org.finalremake.data.model.payment.Payment;
+import org.finalremake.data.dto.payment.PaymentResponseDTO;
 
 import java.util.Map;
 
@@ -17,6 +17,6 @@ import java.util.Map;
 public class CheckoutResponseDTO extends AbstractDTO {
     private CustomerResponseDTO customer;
     private AddressResponseDTO address;
-    private Payment payment;
+    private PaymentResponseDTO payment;
     private Map<Long, Integer> productQuantity;
 }

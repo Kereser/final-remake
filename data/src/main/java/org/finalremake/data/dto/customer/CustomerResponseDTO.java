@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.finalremake.data.dto.AbstractDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
+import org.finalremake.data.dto.payment.PaymentResponseDTO;
 
 import java.util.List;
 
@@ -18,4 +19,5 @@ public class CustomerResponseDTO extends AbstractDTO {
     private String phone;
     private Integer age;
     private List<AddressResponseDTO> addresses;
+    private List<PaymentResponseDTO> payments;
 }

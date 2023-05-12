@@ -9,6 +9,7 @@ import jakarta.validation.constraints.Size;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.data.model.checkout.Checkout;
+import org.finalremake.data.model.payment.Payment;
 
 import java.util.List;
 
@@ -33,4 +34,7 @@ public class Customer extends AbstractEntity {
 
     @OneToOne(mappedBy = "customer")
     private Checkout checkout;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Payment> payments;
 }
