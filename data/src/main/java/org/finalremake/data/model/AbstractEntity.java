@@ -4,12 +4,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.MappedSuperclass;
+import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.Instant;
 
 @MappedSuperclass
+@Getter
+@Setter
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
