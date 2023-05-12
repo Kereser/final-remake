@@ -10,5 +10,5 @@ import org.finalremake.data.dto.AbstractDTO;
 @Setter
 public class DebitCardPaymentResponseDTO extends AbstractDTO {
     private String ACCOUNT_NUMBER;
-    private PaymentResponseDTO paymentResponseDTO;
+    private PaymentResponseDTO payment;
 }
