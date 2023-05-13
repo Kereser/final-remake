@@ -5,12 +5,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.customer.Customer;
 
 @Entity
-@Builder
-@AllArgsConstructor
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor

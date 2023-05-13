@@ -2,12 +2,12 @@ package org.finalremake.data.model.payment;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.customer.Customer;
 
 @Entity
-@Builder
-@AllArgsConstructor
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor

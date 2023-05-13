@@ -2,6 +2,7 @@ package org.finalremake.data.model.checkout;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.data.model.customer.Customer;
@@ -10,8 +11,7 @@ import org.finalremake.data.model.payment.Payment;
 import java.util.Map;
 
 @Entity
-@Builder
-@AllArgsConstructor
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor

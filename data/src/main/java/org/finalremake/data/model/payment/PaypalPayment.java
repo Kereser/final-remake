@@ -1,13 +1,14 @@
 package org.finalremake.data.model.payment;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ExcludeSuperclassListeners;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Entity
-@Builder
-@AllArgsConstructor
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor

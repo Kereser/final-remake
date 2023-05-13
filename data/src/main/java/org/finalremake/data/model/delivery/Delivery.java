@@ -4,13 +4,13 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.data.model.payment.Payment;
 
 @Entity
-@Builder
-@AllArgsConstructor
+@SuperBuilder
 @Getter
 @Setter
 @NoArgsConstructor
