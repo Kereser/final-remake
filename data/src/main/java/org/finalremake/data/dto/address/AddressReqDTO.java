@@ -9,7 +9,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class AddressReqDTO {
-    @NotNull String address;
+    @NotNull String direction;
     @NotNull String country;
     @NotNull String city;
     @NotNull Long customerId;
