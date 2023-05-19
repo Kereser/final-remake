@@ -12,5 +12,5 @@ public class AddressReqDTO {
     @NotNull String address;
     @NotNull String country;
     @NotNull String city;
-    @NotNull Integer customerId;
+    @NotNull Long customerId;
 }
