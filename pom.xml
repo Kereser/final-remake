@@ -7,7 +7,8 @@
 		<module>data</module>
 		<module>app</module>
         <module>controller</module>
-    </modules>
+		<module>utils</module>
+	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
