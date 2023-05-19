@@ -1,7 +1,9 @@
 package org.finalremake.data.model.payment;
 
 import jakarta.persistence.MappedSuperclass;
+import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
@@ -12,8 +14,7 @@ import org.finalremake.data.model.AbstractEntity;
 @Getter
 @Setter
 public abstract class AbstractPayment extends AbstractEntity implements IPayment {
-    @NotNull
-    private String ACCOUNT_NUMBER;
+    @NotNull @Size(min=16, max=16) private String ACCOUNT_NUMBER;
 
     @Override
     public String getAccountNumber() {
