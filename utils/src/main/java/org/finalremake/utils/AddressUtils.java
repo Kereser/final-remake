@@ -57,6 +57,7 @@ public class AddressUtils {
                 .direction("Av 10 #34-34")
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
+                .customer(CustomerUtils.getCustomer1())
                 .build();
     }
 
@@ -68,6 +69,7 @@ public class AddressUtils {
                 .direction("Calle 100 #34-34")
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
+                .customer(CustomerUtils.getCustomer2())
                 .build();
     }
 }
