@@ -13,5 +13,5 @@ import java.util.Map;
 @Setter
 public class CheckoutReqDTO {
     @NotNull Long customerId;
-    @NotNull List<@NotNull Map<Long, Integer>> productQuantity;
+    @NotNull Map<Long, Integer> productQuantity;
 }
