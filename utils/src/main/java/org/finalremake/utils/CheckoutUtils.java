@@ -11,7 +11,7 @@ import java.util.Map;
 
 @Component
 public class CheckoutUtils {
-    private static final Map<Long, Integer> productQuantity1 = new HashMap<>(){{put(1L, 1); put(2L, 3);}};
+    private static final Map<Long, Integer> productQuantity1 = new HashMap<>(){{put(1L, 1); put(2L, 2);}};
     private static final Map<Long, Integer> productQuantity2 = new HashMap<>(){{put(1L, 2); put(2L, 4);}};
 
     public static Checkout getCheckout1() {

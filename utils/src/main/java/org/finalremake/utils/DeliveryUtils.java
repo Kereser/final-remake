@@ -15,7 +15,7 @@ public class DeliveryUtils {
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddress1())
                 .payment(PaymentUtils.getPayment1())
-                .totalAmount(1000.50)
+                .totalAmount(2500.50)
                 .build();
     }
 
@@ -26,7 +26,7 @@ public class DeliveryUtils {
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddress2())
                 .payment(PaymentUtils.getPayment2())
-                .totalAmount(2000.50)
+                .totalAmount(5001.00)
                 .build();
     }
 
