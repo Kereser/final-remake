@@ -9,7 +9,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.YearMonth;
 
 @Entity
 @SuperBuilder
@@ -20,7 +20,7 @@ public class DebitCardPayment extends AbstractPayment {
     @NotNull
     @Future
     @DateTimeFormat(pattern = "MM/yyyy")
-    private Date goodTrough;
+    private YearMonth goodTrough;
 
     @OneToOne
     @JoinColumn(name = "payment_id", nullable = false)

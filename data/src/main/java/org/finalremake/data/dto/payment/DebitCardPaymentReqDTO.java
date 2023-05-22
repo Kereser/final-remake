@@ -8,7 +8,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.YearMonth;
 
 @Builder
 @Getter
@@ -20,5 +20,5 @@ public class DebitCardPaymentReqDTO {
     @NotNull
     @Future
     @DateTimeFormat(pattern = "MM/yyyy")
-    private Date goodTrough;
+    private YearMonth goodTrough;
 }
