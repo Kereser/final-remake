@@ -1,5 +1,6 @@
-package org.finalremake.data.model.product;
+package org.finalremake.data.respository.product;
 
+import org.finalremake.data.model.product.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

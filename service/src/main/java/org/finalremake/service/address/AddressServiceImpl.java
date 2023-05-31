@@ -3,7 +3,7 @@ package org.finalremake.service.address;
 import org.finalremake.data.dto.address.AddressMapper;
 import org.finalremake.data.dto.address.AddressReqDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
-import org.finalremake.data.model.address.AddressRepository;
+import org.finalremake.data.respository.address.AddressRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
