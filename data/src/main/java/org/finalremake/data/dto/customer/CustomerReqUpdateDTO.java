@@ -11,10 +11,10 @@ import lombok.Setter;
 @Builder
 @Getter
 @Setter
-public class CustomerReqDTO {
-    @NotNull private String name;
-    @NotNull @Size(min = 3, max =18) private String surname;
-    @Email private String email;
+public class CustomerReqUpdateDTO {
+    @Nullable private String name;
+    @Nullable @Size(min = 3, max =18) private String surname;
+    @Email @NotNull private String email;
     @Nullable private String phone;
     @Nullable private Integer age;
 }
