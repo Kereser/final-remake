@@ -1,4 +1,4 @@
-package org.finalremake.controller;
+package org.finalremake.controller.customer;
 
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 
