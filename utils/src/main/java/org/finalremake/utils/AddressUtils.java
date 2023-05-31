@@ -36,7 +36,7 @@ public class AddressUtils {
                 .direction("Av 10 #34-34")
                 .city("Bogota")
                 .country("Colombia")
-                .customerId(1L)
+                .customer(null)
                 .build();
     }
 
@@ -45,7 +45,7 @@ public class AddressUtils {
                 .city("Bogota")
                 .country("Colombia")
                 .direction("Calle 100 #34-34")
-                .customerId(2L)
+                .customer(null)
                 .build();
     }
 

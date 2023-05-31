@@ -5,14 +5,12 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-import org.finalremake.data.model.customer.Customer;
 
 @Builder
 @Getter
 @Setter
-public class AddressReqDTO {
+public class AddressReqUpdateDTO {
     @NotNull String direction;
-    @NotNull String country;
-    @NotNull String city;
-    @Nullable Customer customer;
+    @Nullable String country;
+    @Nullable String city;
 }
