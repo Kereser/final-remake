@@ -1,6 +1,6 @@
 package org.finalremake.utils;
 
-import org.finalremake.data.dto.checkout.CheckoutReqDTO;
+import org.finalremake.data.dto.checkout.CheckoutReqAndReqUpdateDTO;
 import org.finalremake.data.dto.checkout.CheckoutResponseDTO;
 import org.finalremake.data.model.checkout.Checkout;
 import org.springframework.stereotype.Component;
@@ -62,15 +62,15 @@ public class CheckoutUtils {
                 .build();
     }
 
-    public static CheckoutReqDTO getCheckoutReqDTO1() {
-        return CheckoutReqDTO.builder()
+    public static CheckoutReqAndReqUpdateDTO getCheckoutReqDTO1() {
+        return CheckoutReqAndReqUpdateDTO.builder()
                 .customerId(1L)
                 .productQuantity(productQuantity1)
                 .build();
     }
 
-    public static CheckoutReqDTO getCheckoutReqDTO2() {
-        return CheckoutReqDTO.builder()
+    public static CheckoutReqAndReqUpdateDTO getCheckoutReqDTO2() {
+        return CheckoutReqAndReqUpdateDTO.builder()
                 .customerId(2L)
                 .productQuantity(productQuantity2)
                 .build();
