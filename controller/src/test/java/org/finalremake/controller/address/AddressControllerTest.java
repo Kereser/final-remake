@@ -15,6 +15,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -77,5 +78,14 @@ public class AddressControllerTest {
                     .andExpect(jsonPath("$.id").value(addressResponseDTO.getId()))
                     .andExpect(status().isFound());
         }
+    }
+
+    @Test
+    void deleteAddress_DeleteOneAddress_WhenValidId() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(delete("/addresses/1")).andReturn();
+
+        assertThat(mvcResult.getResponse().getStatus(), is(204));
+        verify(addressServiceImpl).deleteAddress(anyLong());
+        verifyNoMoreInteractions(addressServiceImpl);
     }
 }
