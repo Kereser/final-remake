@@ -15,7 +15,7 @@ public class ProductUtils {
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .name("TV")
-                .price(500.50)
+                .price(500)
                 .build();
     }
 
@@ -35,7 +35,7 @@ public class ProductUtils {
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .name("TV")
-                .price(500.50)
+                .price(500)
                 .build();
     }
 
@@ -52,7 +52,7 @@ public class ProductUtils {
     public static ProductReqDTO getProductReqDTO1() {
         return ProductReqDTO.builder()
                 .name("TV")
-                .price(500.50)
+                .price(500)
                 .build();
     }
 

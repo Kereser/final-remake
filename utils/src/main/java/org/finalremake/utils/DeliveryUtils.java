@@ -8,25 +8,25 @@ import java.time.Instant;
 
 @Component
 public class DeliveryUtils {
-    private static Delivery getDelivery1() {
+    public static Delivery getDelivery1() {
         return Delivery.builder()
                 .id(1L)
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddress1())
                 .payment(PaymentUtils.getPayment1())
-                .totalAmount(2500.50)
+                .totalAmount(2500.00)
                 .build();
     }
 
-    private static Delivery getDelivery2() {
+    public static Delivery getDelivery2() {
         return Delivery.builder()
                 .id(2L)
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddress2())
                 .payment(PaymentUtils.getPayment2())
-                .totalAmount(5001.00)
+                .totalAmount(5000.00)
                 .build();
     }
 
@@ -37,7 +37,7 @@ public class DeliveryUtils {
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddressResponseDTO1())
                 .payment(PaymentUtils.getPaymentResponseDTO1())
-                .totalAmount(1000.50)
+                .totalAmount(2500.00)
                 .build();
     }
 
@@ -48,7 +48,7 @@ public class DeliveryUtils {
                 .updatedAt(Instant.now())
                 .address(AddressUtils.getAddressResponseDTO2())
                 .payment(PaymentUtils.getPaymentResponseDTO2())
-                .totalAmount(2000.50)
+                .totalAmount(5000.00)
                 .build();
     }
 }
