@@ -1,5 +1,6 @@
-package org.finalremake.data.dto.customer;
+package org.finalremake.data.model.customer;
 
+import org.finalremake.data.dto.customer.CustomerResponseDTO;
 import org.finalremake.data.model.customer.Customer;
 import org.mapstruct.Mapper;
 

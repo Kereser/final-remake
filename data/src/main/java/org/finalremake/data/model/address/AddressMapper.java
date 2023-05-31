@@ -1,5 +1,6 @@
-package org.finalremake.data.dto.address;
+package org.finalremake.data.model.address;
 
+import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.model.address.Address;
 import org.mapstruct.Mapper;
 
