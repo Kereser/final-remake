@@ -16,8 +16,7 @@ import java.time.YearMonth;
 public class CreditCardPaymentReqDTO {
     @NotNull @Size(min=16, max=16) private String ACCOUNT_NUMBER;
 
-    @NotNull
-    @Future
-    @DateTimeFormat(pattern = "MM/yyyy")
-    private YearMonth goodTrough;
+    @NotNull @Size(min = 3, max = 3) private int cvv;
+
+    @NotNull @Future @DateTimeFormat(pattern = "MM/yyyy") private YearMonth goodTrough;
 }
