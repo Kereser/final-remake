@@ -64,14 +64,12 @@ public class CheckoutUtils {
 
     public static CheckoutReqAndReqUpdateDTO getCheckoutReqDTO1() {
         return CheckoutReqAndReqUpdateDTO.builder()
-                .customerId(1L)
                 .productQuantity(productQuantity1)
                 .build();
     }
 
     public static CheckoutReqAndReqUpdateDTO getCheckoutReqDTO2() {
         return CheckoutReqAndReqUpdateDTO.builder()
-                .customerId(2L)
                 .productQuantity(productQuantity2)
                 .build();
     }

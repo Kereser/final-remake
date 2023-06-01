@@ -81,16 +81,6 @@ public class PaymentUtils {
                 .build();
     }
 
-    public static CreditCardPaymentResponseDTO getCreditCardPaymentResponseDTO() {
-        return CreditCardPaymentResponseDTO.builder()
-                .id(1L)
-                .createdAt(Instant.now())
-                .updatedAt(Instant.now())
-                .ACCOUNT_NUMBER("*".repeat(12) + "9386")
-                .payment(getPaymentResponseDTO1())
-                .build();
-    }
-
     public static CreditCardPaymentReqDTO getCreditCardPaymentReqDTO() {
         return CreditCardPaymentReqDTO.builder()
                 .ACCOUNT_NUMBER("1023546396859386")
@@ -109,16 +99,6 @@ public class PaymentUtils {
                 .build();
     }
 
-    public static DebitCardPaymentResponseDTO getDebitCardPaymentResponseDTO() {
-        return DebitCardPaymentResponseDTO.builder()
-                .id(1L)
-                .createdAt(Instant.now())
-                .updatedAt(Instant.now())
-                .ACCOUNT_NUMBER("*".repeat(12) + "2478")
-                .payment(getPaymentResponseDTO3())
-                .build();
-    }
-
 
     public static DebitCardPaymentReqDTO getDebitCardPaymentReqDTO() {
         return DebitCardPaymentReqDTO.builder()
@@ -134,16 +114,6 @@ public class PaymentUtils {
                 .updatedAt(Instant.now())
                 .ACCOUNT_NUMBER("Pepeix@gmail.com")
                 .payment(getPayment2())
-                .build();
-    }
-
-    public static PaypalPaymentResponseDTO getPaypalPaymentResponseDTO() {
-        return PaypalPaymentResponseDTO.builder()
-                .id(1L)
-                .createdAt(Instant.now())
-                .updatedAt(Instant.now())
-                .ACCOUNT_NUMBER("Pepeix@gmail.com")
-                .payment(getPaymentResponseDTO2())
                 .build();
     }
 
