@@ -2,6 +2,7 @@ package org.finalremake.controller.address;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.finalremake.data.dto.address.AddressReqDTO;
+import org.finalremake.data.dto.address.AddressReqUpdateDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.service.address.AddressServiceImpl;
@@ -13,6 +14,7 @@ import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -38,19 +40,22 @@ public class AddressControllerTest {
     private Address address;
     private AddressResponseDTO addressResponseDTO;
     private AddressReqDTO addressReqDTO;
+    private AddressReqUpdateDTO addressReqUpdateDTO;
 
     @BeforeEach
     void init() {
         address = AddressUtils.getAddress1();
         addressReqDTO = AddressUtils.getAddressReqDTO1();
         addressResponseDTO = AddressUtils.getAddressResponseDTO1();
+        addressReqUpdateDTO = AddressUtils.getAddressReqUpdateDTO1();
     }
 
     @Test
     void createAddress_CreateOneAddress_WhenValidInput() throws Exception {
         when(addressServiceImpl.createAddress(Mockito.any(AddressReqDTO.class), anyLong())).thenReturn(addressResponseDTO);
 
-        mockMvc.perform(post("/addresses").content(objectMapper.writeValueAsString(addressReqDTO)))
+        mockMvc.perform(post("/addresses").content(objectMapper.writeValueAsString(addressReqDTO))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.city").value(addressResponseDTO.getCity()))
                 .andExpect(jsonPath("$.id").value(addressResponseDTO.getId()))
                 .andExpect(status().isCreated());
@@ -87,5 +92,16 @@ public class AddressControllerTest {
         assertThat(mvcResult.getResponse().getStatus(), is(204));
         verify(addressServiceImpl).deleteAddress(anyLong());
         verifyNoMoreInteractions(addressServiceImpl);
+    }
+
+    @Test
+    void updateAddress_UpdateOneAddress_WhenValidPayload() throws Exception {
+        when(addressServiceImpl.updateAddress(Mockito.any(AddressReqUpdateDTO.class), anyLong())).thenReturn(addressResponseDTO);
+
+        mockMvc.perform(put("/addresses/1").content(objectMapper.writeValueAsString(addressReqUpdateDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.city").value(addressResponseDTO.getCity()))
+                .andExpect(jsonPath("$.id").value(addressResponseDTO.getId()))
+                .andExpect(status().isOk());
     }
 }

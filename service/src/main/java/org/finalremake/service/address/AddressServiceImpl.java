@@ -1,5 +1,6 @@
 package org.finalremake.service.address;
 
+import org.finalremake.data.dto.address.AddressReqUpdateDTO;
 import org.finalremake.data.model.address.AddressMapper;
 import org.finalremake.data.dto.address.AddressReqDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
@@ -44,7 +45,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressResponseDTO updateAddress(AddressReqDTO addressReqDTO, Long addressId) {
+    public AddressResponseDTO updateAddress(AddressReqUpdateDTO addressReqUpdateDTO, Long addressId) {
         return null;
     }
 }

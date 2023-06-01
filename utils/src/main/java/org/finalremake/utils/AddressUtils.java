@@ -1,6 +1,7 @@
 package org.finalremake.utils;
 
 import org.finalremake.data.dto.address.AddressReqDTO;
+import org.finalremake.data.dto.address.AddressReqUpdateDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.model.address.Address;
 import org.springframework.stereotype.Component;
@@ -70,6 +71,14 @@ public class AddressUtils {
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
                 .customer(CustomerUtils.getCustomer2())
+                .build();
+    }
+
+    public static AddressReqUpdateDTO getAddressReqUpdateDTO1() {
+        return AddressReqUpdateDTO.builder()
+                .city("Bogota")
+                .country("Colombia")
+                .direction("Calle 100 #34-34")
                 .build();
     }
 }

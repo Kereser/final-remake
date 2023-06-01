@@ -2,6 +2,7 @@ package org.finalremake.service.address;
 
 
 import org.finalremake.data.dto.address.AddressReqDTO;
+import org.finalremake.data.dto.address.AddressReqUpdateDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 
 import java.util.List;
@@ -12,5 +13,5 @@ public interface AddressService {
     List<AddressResponseDTO> getAllAddresses();
     List<AddressResponseDTO> getAllCustomerAddresses(Long customerId);
     AddressResponseDTO createAddress(AddressReqDTO addressReqDTO, Long customerId);
-    AddressResponseDTO updateAddress(AddressReqDTO addressReqDTO, Long addressId);
+    AddressResponseDTO updateAddress(AddressReqUpdateDTO addressReqUpdateDTO, Long addressId);
 }
