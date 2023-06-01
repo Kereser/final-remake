@@ -10,6 +10,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class PaypalPaymentReqDTO {
-    @NotNull
-    @Size(min=16, max=16) private String ACCOUNT_NUMBER;
+    @NotNull @Size(min=16, max=16) private String ACCOUNT_NUMBER;
 }
