@@ -8,6 +8,7 @@ import org.finalremake.data.model.customer.Customer;
 import org.finalremake.service.customer.CustomerServiceImpl;
 import org.finalremake.utils.CustomerUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -64,4 +68,36 @@ public class CustomerControllerTest {
         verify(customerServiceImpl).deleteCustomer(anyLong());
         verifyNoMoreInteractions(customerServiceImpl);
     }
+
+    @Nested
+    class getCustomer {
+        @Test
+        void getCustomers_GetAllCustomers_WhenValidRequest() throws Exception {
+            when(customerServiceImpl.getCustomers()).thenReturn(new ArrayList<>(Arrays.asList(customerResponseDTO)));
+
+            mockMvc.perform(get("/customers"))
+                    .andExpect(jsonPath("$.length()").value(1))
+                    .andExpect(jsonPath("[0].id").value(customerResponseDTO.getId()))
+                    .andExpect(jsonPath("[0].email").value(customerResponseDTO.getEmail()))
+                    .andExpect(status().isOk());
+
+            verify(customerServiceImpl).getCustomers();
+            verifyNoMoreInteractions(customerServiceImpl);
+        }
+
+        @Test
+        void getCustomer_GetOneCustomer_WhenValidId() throws Exception {
+            when(customerServiceImpl.getCustomer(anyLong())).thenReturn(customerResponseDTO);
+
+            mockMvc.perform(get("/customers/1"))
+                    .andExpect(jsonPath("$.id").value(customerResponseDTO.getId()))
+                    .andExpect(jsonPath("$.name").value(customerResponseDTO.getName()))
+                    .andExpect(status().isFound());
+
+            verify(customerServiceImpl).getCustomer(anyLong());
+            verifyNoMoreInteractions(customerServiceImpl);
+        }
+
+    }
+
 }
