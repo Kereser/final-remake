@@ -20,7 +20,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public AddressResponseDTO getOneAddress(Long id) {
+    public AddressResponseDTO getAddress(Long id) {
         return null;
     }
 
@@ -30,7 +30,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressResponseDTO> getAllAddresses() {
+    public List<AddressResponseDTO> getAddresses() {
         return null;
     }
 

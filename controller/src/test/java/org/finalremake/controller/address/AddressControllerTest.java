@@ -66,7 +66,7 @@ public class AddressControllerTest {
     class getAddresses {
         @Test
         void getAllAddresses_GetAll_WhenValidInput() throws Exception {
-            when(addressServiceImpl.getAllAddresses()).thenReturn(new ArrayList<>(Arrays.asList(addressResponseDTO)));
+            when(addressServiceImpl.getAddresses()).thenReturn(new ArrayList<>(Arrays.asList(addressResponseDTO)));
 
             mockMvc.perform(get("/addresses"))
                     .andExpect(jsonPath("[0].city").value(addressResponseDTO.getCity()))
@@ -76,7 +76,7 @@ public class AddressControllerTest {
 
         @Test
         void getOneAddress_GetOne_WhenValidId() throws Exception {
-            when(addressServiceImpl.getOneAddress(anyLong())).thenReturn(addressResponseDTO);
+            when(addressServiceImpl.getAddress(anyLong())).thenReturn(addressResponseDTO);
 
             mockMvc.perform(get("/addresses/1"))
                     .andExpect(jsonPath("$.country").value(addressResponseDTO.getCountry()))

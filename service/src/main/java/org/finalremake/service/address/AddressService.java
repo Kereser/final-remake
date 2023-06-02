@@ -8,9 +8,9 @@ import org.finalremake.data.dto.address.AddressResponseDTO;
 import java.util.List;
 
 public interface AddressService {
-    AddressResponseDTO getOneAddress(Long id);
+    AddressResponseDTO getAddress(Long id);
     void deleteAddress(Long id);
-    List<AddressResponseDTO> getAllAddresses();
+    List<AddressResponseDTO> getAddresses();
     List<AddressResponseDTO> getAllCustomerAddresses(Long customerId);
     AddressResponseDTO createAddress(AddressReqDTO addressReqDTO, Long customerId);
     AddressResponseDTO updateAddress(AddressReqUpdateDTO addressReqUpdateDTO, Long addressId);
