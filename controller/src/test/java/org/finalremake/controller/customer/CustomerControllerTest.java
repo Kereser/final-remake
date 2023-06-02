@@ -44,6 +44,7 @@ public class CustomerControllerTest {
         customer = CustomerUtils.getCustomer1();
         customerReqDTO = CustomerUtils.getCustomerReqDTO1();
         customerResponseDTO = CustomerUtils.getCustomerResponseDTO1();
+        customerReqUpdateDTO = CustomerUtils.getCustomerReqUpdateDTO1();
     }
 
     @Test
@@ -100,4 +101,17 @@ public class CustomerControllerTest {
 
     }
 
+    @Test
+    void updateCustomer_UpdateOneCustomer_WhenValidPayload() throws Exception {
+        when(customerServiceImpl.updateCustomer(Mockito.any(CustomerReqUpdateDTO.class))).thenReturn(customerResponseDTO);
+
+        mockMvc.perform(put("/customers/1").content(objectMapper.writeValueAsString(customerReqUpdateDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(customerResponseDTO.getId()))
+                .andExpect(jsonPath("$.email").value(customerResponseDTO.getEmail()))
+                .andExpect(status().isOk());
+
+        verify(customerServiceImpl).updateCustomer(Mockito.any(CustomerReqUpdateDTO.class));
+        verifyNoMoreInteractions(customerServiceImpl);
+    }
 }

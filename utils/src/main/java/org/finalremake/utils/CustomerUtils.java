@@ -1,6 +1,7 @@
 package org.finalremake.utils;
 
 import org.finalremake.data.dto.customer.CustomerReqDTO;
+import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
 import org.finalremake.data.dto.customer.CustomerResponseDTO;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.data.model.customer.Customer;
@@ -12,7 +13,10 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 @Component
-public class CustomerUtils {
+public final class CustomerUtils {
+    private CustomerUtils() {
+    }
+
     public static Customer getCustomer1 () {
         return Customer.builder()
                 .id(1L)
@@ -92,6 +96,13 @@ public class CustomerUtils {
                 .name("Pedro")
                 .surname("Sabarriaga")
                 .phone("3044533392")
+                .build();
+    }
+
+    public static CustomerReqUpdateDTO getCustomerReqUpdateDTO1() {
+        return CustomerReqUpdateDTO.builder()
+                .age(52)
+                .email("P@gmail.com")
                 .build();
     }
 }
