@@ -16,6 +16,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -50,5 +51,17 @@ public class CustomerControllerTest {
                 .andExpect(jsonPath("$.id").value(customerResponseDTO.getId()))
                 .andExpect(jsonPath("$.email").value(customerResponseDTO.getEmail()))
                 .andExpect(status().isCreated());
+
+        verify(customerServiceImpl).createCustomer(Mockito.any(CustomerReqDTO.class));
+        verifyNoMoreInteractions(customerServiceImpl);
+    }
+
+    @Test
+    void deleteCustomer_DeleteCustomer_WhenValidId() throws Exception {
+        MvcResult res = mockMvc.perform(delete("/customers/1")).andReturn();
+
+        assertThat(res.getResponse().getStatus(), is(204));
+        verify(customerServiceImpl).deleteCustomer(anyLong());
+        verifyNoMoreInteractions(customerServiceImpl);
     }
 }
