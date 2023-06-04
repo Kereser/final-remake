@@ -17,12 +17,12 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    public PaymentResponseDTO createCreditCardPayment(DebitCardPaymentReqDTO debitCardPaymentReqDTO, Long customerId) {
+    public PaymentResponseDTO createDebitCardPayment(DebitCardPaymentReqDTO debitCardPaymentReqDTO, Long customerId) {
         return null;
     }
 
     @Override
-    public PaymentResponseDTO createCreditCardPayment(PaypalPaymentReqDTO paypalPaymentReqDTO, Long customerId) {
+    public PaymentResponseDTO createPaypalPayment(PaypalPaymentReqDTO paypalPaymentReqDTO, Long customerId) {
         return null;
     }
 }

@@ -8,6 +8,6 @@ import org.finalremake.data.dto.payment.PaypalPaymentReqDTO;
 public interface PaymentService {
     void deletePayment(Long paymentId);
     PaymentResponseDTO createCreditCardPayment(CreditCardPaymentReqDTO creditCardPaymentReqDTO, Long customerId);
-    PaymentResponseDTO createCreditCardPayment(DebitCardPaymentReqDTO debitCardPaymentReqDTO, Long customerId);
-    PaymentResponseDTO createCreditCardPayment(PaypalPaymentReqDTO paypalPaymentReqDTO, Long customerId);
+    PaymentResponseDTO createDebitCardPayment(DebitCardPaymentReqDTO debitCardPaymentReqDTO, Long customerId);
+    PaymentResponseDTO createPaypalPayment(PaypalPaymentReqDTO paypalPaymentReqDTO, Long customerId);
 }
