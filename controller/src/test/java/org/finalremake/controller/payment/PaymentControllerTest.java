@@ -47,6 +47,9 @@ public class PaymentControllerTest {
 
         paymentResponseDTODC = PaymentUtils.getPaymentResponseDTO3();
         debitCardPaymentReqDTO = PaymentUtils.getDebitCardPaymentReqDTO();
+
+        paymentResponseDTOPaypal = PaymentUtils.getPaymentResponseDTO2();
+        paypalPaymentReqDTO = PaymentUtils.getPaypalPaymentReqDTO();
     }
 
     @Test
@@ -83,6 +86,20 @@ public class PaymentControllerTest {
                 .andExpect(status().isCreated());
 
         verify(paymentServiceImpl).createDebitCardPayment(Mockito.any(DebitCardPaymentReqDTO.class), anyLong());
+        verifyNoMoreInteractions(paymentServiceImpl);
+    }
+
+    @Test
+    void createPaypalPayment_CreatePaypalPayment_WhenValidPayload() throws Exception {
+        when(paymentServiceImpl.createPaypalPayment(Mockito.any(PaypalPaymentReqDTO.class), anyLong())).thenReturn(paymentResponseDTOPaypal);
+
+        mockMvc.perform(post("/customers/1/payments/debitcard").content(objectMapper.writeValueAsString(paypalPaymentReqDTO))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(paymentResponseDTOPaypal.getId()))
+                .andExpect(jsonPath("$.name").value(paymentResponseDTOPaypal.getName()))
+                .andExpect(status().isCreated());
+
+        verify(paymentServiceImpl).createPaypalPayment(Mockito.any(PaypalPaymentReqDTO.class), anyLong());
         verifyNoMoreInteractions(paymentServiceImpl);
     }
 }
