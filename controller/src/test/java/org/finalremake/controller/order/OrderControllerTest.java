@@ -5,6 +5,7 @@ import org.finalremake.data.dto.order.OrderResponseDTO;
 import org.finalremake.service.order.OrderServiceImpl;
 import org.finalremake.utils.OrderUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -12,6 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -51,5 +55,32 @@ class OrderControllerTest {
         assertThat(res.getResponse().getStatus(), is(204));
         verify(orderServiceImpl).deleteOrder(anyLong());
         verifyNoMoreInteractions(orderServiceImpl);
+    }
+
+    @Nested
+    class GetOrders {
+        @Test
+        void getOrder_GetOneOrder_WhenValidId() throws Exception {
+            when(orderServiceImpl.getOrder(anyLong())).thenReturn(orderResponseDTO);
+
+            mockMvc.perform(get("/orders/1"))
+                    .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
+                    .andExpect(status().isFound());
+
+            verify(orderServiceImpl).getOrder(anyLong());
+            verifyNoMoreInteractions(orderServiceImpl);
+        }
+
+        @Test
+        void getOrders_GetAllOrders_WhenValid() throws Exception {
+            when(orderServiceImpl.getOrders()).thenReturn(new ArrayList<>(Arrays.asList(orderResponseDTO)));
+
+            mockMvc.perform(get("/orders"))
+                    .andExpect(jsonPath("$.length()").value(1))
+                    .andExpect(status().isOk());
+
+            verify(orderServiceImpl).getOrders();
+            verifyNoMoreInteractions(orderServiceImpl);
+        }
     }
 }
