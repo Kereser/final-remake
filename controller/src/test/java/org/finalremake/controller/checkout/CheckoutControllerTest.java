@@ -80,4 +80,17 @@ class CheckoutControllerTest {
         verify(checkoutServiceImpl).updateCheckout(anyLong(), anyMap(), Mockito.any(CheckoutReqAndReqUpdateDTO.class));
         verifyNoMoreInteractions(checkoutServiceImpl);
     }
+
+    @Test
+    void getCheckout_getOneCheckout_WhenValidId() throws Exception {
+        when(checkoutServiceImpl.getCheckout(anyLong())).thenReturn(checkoutResponseDTO);
+
+        mockMvc.perform(get("/checkouts/1"))
+              .andExpect(jsonPath("$.customer").value(checkoutResponseDTO.getCustomer()))
+              .andExpect(jsonPath("$.productQuantity").value(checkoutResponseDTO.getProductQuantity()))
+              .andExpect(status().isOk());
+
+        verify(checkoutServiceImpl).getCheckout(anyLong());
+        verifyNoMoreInteractions(checkoutServiceImpl);
+    }
 }
