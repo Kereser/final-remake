@@ -8,6 +8,7 @@ import org.finalremake.data.model.product.Product;
 import org.finalremake.service.product.ProductServiceImpl;
 import org.finalremake.utils.ProductUtils;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import static org.hamcrest.MatcherAssert.*;
 import static org.hamcrest.Matchers.*;
@@ -30,14 +34,12 @@ class ProductControllerTest {
     @MockBean private ProductServiceImpl productServiceImpl;
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
-    private Product product;
     private ProductReqDTO productReqDTO;
     private ProductResponseDTO productResponseDTO;
     private ProductReqUpdateDTO productReqUpdateDTO;
 
     @BeforeEach
     void init() {
-        product = ProductUtils.getProduct1();
         productReqDTO = ProductUtils.getProductReqDTO1();
         productResponseDTO = ProductUtils.getProductResponseDTO1();
     }
@@ -77,5 +79,34 @@ class ProductControllerTest {
 
         verify(productServiceImpl).updateProduct(Mockito.any(ProductReqUpdateDTO.class));
         verifyNoMoreInteractions(productServiceImpl);
+    }
+
+    @Nested
+    class getProduct {
+        @Test
+        void getProduct_GetOneProduct_WhenValidInput() throws Exception {
+            when(productServiceImpl.getProduct(anyLong())).thenReturn(productResponseDTO);
+
+            mockMvc.perform(get("/products/1"))
+                  .andExpect(jsonPath("$.id").value(productResponseDTO.getId()))
+                  .andExpect(jsonPath("$.price").value(productResponseDTO.getPrice()))
+                  .andExpect(status().isOk());
+
+            verify(productServiceImpl).getProduct(anyLong());
+            verifyNoMoreInteractions(productServiceImpl);
+        }
+
+        @Test
+        void getProducts_GetAllProducts_WhenValid() throws Exception {
+            when(productServiceImpl.getProducts()).thenReturn(new ArrayList<>(Arrays.asList(productResponseDTO)));
+
+            mockMvc.perform(get("/products"))
+                 .andExpect(jsonPath("$[0].id").value(productResponseDTO.getId()))
+                 .andExpect(jsonPath("$[0].price").value(productResponseDTO.getPrice()))
+                 .andExpect(status().isOk());
+
+            verify(productServiceImpl).getProducts();
+            verifyNoMoreInteractions(productServiceImpl);
+        }
     }
 }
