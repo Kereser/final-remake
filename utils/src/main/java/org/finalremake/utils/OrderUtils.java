@@ -7,8 +7,8 @@ import org.springframework.stereotype.Component;
 import java.time.Instant;
 
 @Component
-public final class OderUtils {
-    private OderUtils() {}
+public final class OrderUtils {
+    private OrderUtils() {}
 
     public static Order getOrder1() {
         return Order.builder()
