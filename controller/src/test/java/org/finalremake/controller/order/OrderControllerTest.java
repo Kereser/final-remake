@@ -83,4 +83,17 @@ class OrderControllerTest {
             verifyNoMoreInteractions(orderServiceImpl);
         }
     }
+
+    @Test
+    void updateOrder_UpdateOneOrder_WhenValidPayload() throws Exception {
+        when(orderServiceImpl.updateOrder(anyLong(), anyLong())).thenReturn(orderResponseDTO);
+
+        mockMvc.perform(put("/orders/1").param("customerId", "1"))
+               .andExpect(jsonPath("$.payment").value(orderResponseDTO.getPayment()))
+               .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
+               .andExpect(status().isOk());
+
+        verify(orderServiceImpl).updateOrder(anyLong(), anyLong());
+        verifyNoMoreInteractions(orderServiceImpl);
+    }
 }
