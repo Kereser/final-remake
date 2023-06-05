@@ -64,4 +64,18 @@ class ProductControllerTest {
         verify(productServiceImpl).createProduct(Mockito.any(ProductReqDTO.class));
         verifyNoMoreInteractions(productServiceImpl);
     }
+
+    @Test
+    void updateProduct_UpdateProduct_WhenValidPayload() throws Exception {
+        when(productServiceImpl.updateProduct(Mockito.any(ProductReqUpdateDTO.class))).thenReturn(productResponseDTO);
+
+        mockMvc.perform(put("/products/1").content(objectMapper.writeValueAsString(productReqUpdateDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(productResponseDTO.getId()))
+                .andExpect(jsonPath("$.price").value(productResponseDTO.getPrice()))
+                .andExpect(status().isOk());
+
+        verify(productServiceImpl).updateProduct(Mockito.any(ProductReqUpdateDTO.class));
+        verifyNoMoreInteractions(productServiceImpl);
+    }
 }
