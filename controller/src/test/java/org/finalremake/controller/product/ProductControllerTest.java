@@ -9,9 +9,11 @@ import org.finalremake.service.product.ProductServiceImpl;
 import org.finalremake.utils.ProductUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -49,4 +51,17 @@ class ProductControllerTest {
         verifyNoMoreInteractions(productServiceImpl);
     }
 
+    @Test
+    void createProduct_CreateProduct_WhenValidPayload() throws Exception {
+        when(productServiceImpl.createProduct(Mockito.any(ProductReqDTO.class))).thenReturn(productResponseDTO);
+
+        mockMvc.perform(post("/products").content(objectMapper.writeValueAsString(productReqDTO))
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(jsonPath("$.id").value(productResponseDTO.getId()))
+                .andExpect(jsonPath("$.name").value(productResponseDTO.getName()))
+                .andExpect(status().isCreated());
+
+        verify(productServiceImpl).createProduct(Mockito.any(ProductReqDTO.class));
+        verifyNoMoreInteractions(productServiceImpl);
+    }
 }
