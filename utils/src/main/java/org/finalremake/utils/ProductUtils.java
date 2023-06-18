@@ -1,6 +1,7 @@
 package org.finalremake.utils;
 
 import org.finalremake.data.dto.product.ProductReqDTO;
+import org.finalremake.data.dto.product.ProductReqUpdateDTO;
 import org.finalremake.data.dto.product.ProductResponseDTO;
 import org.finalremake.data.model.product.Product;
 import org.springframework.stereotype.Component;
@@ -60,6 +61,12 @@ public class ProductUtils {
         return ProductReqDTO.builder()
                 .name("Washing machine")
                 .price(1000)
+                .build();
+    }
+
+    public static ProductReqUpdateDTO getProductReqUpdateDTO1() {
+        return ProductReqUpdateDTO.builder()
+                .price(4000.0)
                 .build();
     }
 }

@@ -30,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ProductResponseDTO updateProduct(ProductReqUpdateDTO productReqUpdateDTO) {
+    public ProductResponseDTO updateProduct(ProductReqUpdateDTO productReqUpdateDTO, Long id) {
         return null;
     }
 }

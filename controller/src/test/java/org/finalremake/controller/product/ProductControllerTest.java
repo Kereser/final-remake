@@ -42,6 +42,7 @@ class ProductControllerTest {
     void init() {
         productReqDTO = ProductUtils.getProductReqDTO1();
         productResponseDTO = ProductUtils.getProductResponseDTO1();
+        productReqUpdateDTO = ProductUtils.getProductReqUpdateDTO1();
     }
 
     @Test
@@ -69,7 +70,7 @@ class ProductControllerTest {
 
     @Test
     void updateProduct_UpdateProduct_WhenValidPayload() throws Exception {
-        when(productServiceImpl.updateProduct(Mockito.any(ProductReqUpdateDTO.class))).thenReturn(productResponseDTO);
+        when(productServiceImpl.updateProduct(Mockito.any(ProductReqUpdateDTO.class), anyLong())).thenReturn(productResponseDTO);
 
         mockMvc.perform(put("/products/1").content(objectMapper.writeValueAsString(productReqUpdateDTO))
                 .contentType(MediaType.APPLICATION_JSON))
@@ -77,7 +78,7 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.price").value(productResponseDTO.getPrice()))
                 .andExpect(status().isOk());
 
-        verify(productServiceImpl).updateProduct(Mockito.any(ProductReqUpdateDTO.class));
+        verify(productServiceImpl).updateProduct(Mockito.any(ProductReqUpdateDTO.class), anyLong());
         verifyNoMoreInteractions(productServiceImpl);
     }
 
@@ -90,7 +91,7 @@ class ProductControllerTest {
             mockMvc.perform(get("/products/1"))
                   .andExpect(jsonPath("$.id").value(productResponseDTO.getId()))
                   .andExpect(jsonPath("$.price").value(productResponseDTO.getPrice()))
-                  .andExpect(status().isOk());
+                  .andExpect(status().isFound());
 
             verify(productServiceImpl).getProduct(anyLong());
             verifyNoMoreInteractions(productServiceImpl);

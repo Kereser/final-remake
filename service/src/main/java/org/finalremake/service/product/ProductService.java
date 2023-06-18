@@ -11,5 +11,5 @@ public interface ProductService {
     ProductResponseDTO createProduct(ProductReqDTO productReqDTO);
     ProductResponseDTO getProduct(Long productId);
     List<ProductResponseDTO> getProducts();
-    ProductResponseDTO updateProduct(ProductReqUpdateDTO productReqUpdateDTO);
+    ProductResponseDTO updateProduct(ProductReqUpdateDTO productReqUpdateDTO, Long id);
 }
