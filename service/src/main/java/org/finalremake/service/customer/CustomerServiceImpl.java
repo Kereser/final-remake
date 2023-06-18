@@ -30,7 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
-    public CustomerResponseDTO updateCustomer(CustomerReqUpdateDTO customerUpdateDTO) {
+    public CustomerResponseDTO updateCustomer(CustomerReqUpdateDTO customerUpdateDTO, Long id) {
         return null;
     }
 }
