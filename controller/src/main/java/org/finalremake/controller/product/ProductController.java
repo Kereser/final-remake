@@ -1,5 +1,6 @@
 package org.finalremake.controller.product;
 
+import jakarta.validation.Valid;
 import org.finalremake.data.dto.product.ProductReqDTO;
 import org.finalremake.data.dto.product.ProductReqUpdateDTO;
 import org.finalremake.data.dto.product.ProductResponseDTO;
@@ -32,13 +33,13 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponseDTO createProduct(@RequestBody ProductReqDTO productReqDTO) {
+    public ProductResponseDTO createProduct(@RequestBody @Valid ProductReqDTO productReqDTO) {
         return productServiceImpl.createProduct(productReqDTO);
     }
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public ProductResponseDTO updateProduct(@PathVariable Long id, @RequestBody ProductReqUpdateDTO productReqUpdateDTO) {
+    public ProductResponseDTO updateProduct(@PathVariable Long id, @RequestBody @Valid ProductReqUpdateDTO productReqUpdateDTO) {
         return productServiceImpl.updateProduct(productReqUpdateDTO, id);
     }
 

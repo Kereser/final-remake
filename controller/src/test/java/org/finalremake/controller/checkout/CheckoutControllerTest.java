@@ -45,7 +45,7 @@ class CheckoutControllerTest {
     void createCheckout_createOneCheckout_WhenValidPayload() throws Exception {
         when(checkoutServiceImpl.createCheckout(anyLong(), anyMap())).thenReturn(checkoutResponseDTO);
 
-        mockMvc.perform(post("/checkouts")
+        mockMvc.perform(post("/checkouts").param("customerId", "1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(checkoutReqAndReqUpdateDTO)))
                 .andExpect(jsonPath("$.id").value(checkoutResponseDTO.getId()))

@@ -1,5 +1,6 @@
 package org.finalremake.controller.address;
 
+import jakarta.validation.Valid;
 import org.finalremake.data.dto.address.AddressReqDTO;
 import org.finalremake.data.dto.address.AddressReqUpdateDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
@@ -38,7 +39,7 @@ public class AddressController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public AddressResponseDTO updateAddress(@PathVariable Long id, @RequestBody AddressReqUpdateDTO addressReqUpdateDTO) {
+    public AddressResponseDTO updateAddress(@PathVariable Long id, @RequestBody @Valid AddressReqUpdateDTO addressReqUpdateDTO) {
         return addressServiceImpl.updateAddress(addressReqUpdateDTO, id);
     }
 }

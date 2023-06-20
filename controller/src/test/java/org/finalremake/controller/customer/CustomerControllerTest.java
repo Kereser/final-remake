@@ -175,7 +175,7 @@ public class CustomerControllerTest {
                 mockMvc.perform(post("/customers/1/payments/credit-card").content(objectMapper.writeValueAsString(creditCardPaymentReqDTO))
                                 .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(jsonPath("$.id").value(paymentResponseDTOCC.getId()))
-                        .andExpect(jsonPath("$.name").value(paymentResponseDTOCC.getName()))
+                        .andExpect(jsonPath("$.name").value(paymentResponseDTOCC.getName().toString()))
                         .andExpect(status().isCreated());
 
                 verify(paymentServiceImpl).createCreditCardPayment(Mockito.any(CreditCardPaymentReqDTO.class), anyLong());
@@ -189,7 +189,7 @@ public class CustomerControllerTest {
                 mockMvc.perform(post("/customers/1/payments/debit-card").content(objectMapper.writeValueAsString(debitCardPaymentReqDTO))
                                 .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(jsonPath("$.id").value(paymentResponseDTODC.getId()))
-                        .andExpect(jsonPath("$.name").value(paymentResponseDTODC.getName()))
+                        .andExpect(jsonPath("$.name").value(paymentResponseDTODC.getName().toString()))
                         .andExpect(status().isCreated());
 
                 verify(paymentServiceImpl).createDebitCardPayment(Mockito.any(DebitCardPaymentReqDTO.class), anyLong());
@@ -203,7 +203,7 @@ public class CustomerControllerTest {
                 mockMvc.perform(post("/customers/1/payments/paypal").content(objectMapper.writeValueAsString(paypalPaymentReqDTO))
                                 .contentType(MediaType.APPLICATION_JSON))
                         .andExpect(jsonPath("$.id").value(paymentResponseDTOPaypal.getId()))
-                        .andExpect(jsonPath("$.name").value(paymentResponseDTOPaypal.getName()))
+                        .andExpect(jsonPath("$.name").value(paymentResponseDTOPaypal.getName().toString()))
                         .andExpect(status().isCreated());
 
                 verify(paymentServiceImpl).createPaypalPayment(Mockito.any(PaypalPaymentReqDTO.class), anyLong());

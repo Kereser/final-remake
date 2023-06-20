@@ -70,6 +70,7 @@ public class PaymentUtils {
     public static CreditCardPaymentReqDTO getCreditCardPaymentReqDTO() {
         return CreditCardPaymentReqDTO.builder()
                 .ACCOUNT_NUMBER("1023546396859386")
+                .cvv(906)
                 .goodTrough(YearMonth.of(2029, 12))
                 .build();
     }
@@ -77,6 +78,7 @@ public class PaymentUtils {
     public static DebitCardPaymentReqDTO getDebitCardPaymentReqDTO() {
         return DebitCardPaymentReqDTO.builder()
                 .ACCOUNT_NUMBER("1423243543522478")
+                .cvv(140)
                 .goodTrough(YearMonth.of(2025, 12))
                 .build();
     }
