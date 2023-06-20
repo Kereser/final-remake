@@ -6,6 +6,7 @@ import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
 import org.finalremake.data.dto.customer.CustomerResponseDTO;
 import org.finalremake.service.address.AddressServiceImpl;
 import org.finalremake.service.customer.CustomerServiceImpl;
+import org.finalremake.service.payment.PaymentServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,10 +17,12 @@ import java.util.List;
 public class CustomerController {
     private CustomerServiceImpl customerServiceImpl;
     private AddressServiceImpl addressServiceImpl;
+    private PaymentServiceImpl paymentServiceImpl;
 
-    public CustomerController(CustomerServiceImpl customerServiceImpl, AddressServiceImpl addressServiceImpl) {
+    public CustomerController(CustomerServiceImpl customerServiceImpl, AddressServiceImpl addressServiceImpl, PaymentServiceImpl paymentServiceImpl) {
         this.customerServiceImpl = customerServiceImpl;
         this.addressServiceImpl = addressServiceImpl;
+        this.paymentServiceImpl = paymentServiceImpl;
     }
 
     @GetMapping("/{id}")

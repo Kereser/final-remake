@@ -54,7 +54,7 @@ public class PaymentControllerTest {
 
     @Test
     void deletePayment_DeleteOnePayment_WhenValidIdFound() throws Exception {
-        MvcResult res = mockMvc.perform(delete("/customers/1/payments")).andReturn();
+        MvcResult res = mockMvc.perform(delete("/customers/1/payments/1")).andReturn();
 
         assertThat(res.getResponse().getStatus(), is(204));
         verify(paymentServiceImpl).deletePayment(anyLong());
@@ -65,7 +65,7 @@ public class PaymentControllerTest {
     void createCreditCardPayment_CreateCCPayment_WhenValidPayload() throws Exception {
         when(paymentServiceImpl.createCreditCardPayment(Mockito.any(CreditCardPaymentReqDTO.class), anyLong())).thenReturn(paymentResponseDTOCC);
 
-        mockMvc.perform(post("/customers/1/payments/creditcard").content(objectMapper.writeValueAsString(creditCardPaymentReqDTO))
+        mockMvc.perform(post("/customers/1/payments/credit-card").content(objectMapper.writeValueAsString(creditCardPaymentReqDTO))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(paymentResponseDTOCC.getId()))
                 .andExpect(jsonPath("$.name").value(paymentResponseDTOCC.getName()))
@@ -79,7 +79,7 @@ public class PaymentControllerTest {
     void createDebitCardPayment_CreateDBPayment_WhenValidPayload() throws Exception {
         when(paymentServiceImpl.createDebitCardPayment(Mockito.any(DebitCardPaymentReqDTO.class), anyLong())).thenReturn(paymentResponseDTODC);
 
-        mockMvc.perform(post("/customers/1/payments/debitcard").content(objectMapper.writeValueAsString(debitCardPaymentReqDTO))
+        mockMvc.perform(post("/customers/1/payments/debit-card").content(objectMapper.writeValueAsString(debitCardPaymentReqDTO))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(paymentResponseDTODC.getId()))
                 .andExpect(jsonPath("$.name").value(paymentResponseDTODC.getName()))
@@ -93,7 +93,7 @@ public class PaymentControllerTest {
     void createPaypalPayment_CreatePaypalPayment_WhenValidPayload() throws Exception {
         when(paymentServiceImpl.createPaypalPayment(Mockito.any(PaypalPaymentReqDTO.class), anyLong())).thenReturn(paymentResponseDTOPaypal);
 
-        mockMvc.perform(post("/customers/1/payments/debitcard").content(objectMapper.writeValueAsString(paypalPaymentReqDTO))
+        mockMvc.perform(post("/customers/1/payments/paypal").content(objectMapper.writeValueAsString(paypalPaymentReqDTO))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(paymentResponseDTOPaypal.getId()))
                 .andExpect(jsonPath("$.name").value(paymentResponseDTOPaypal.getName()))
