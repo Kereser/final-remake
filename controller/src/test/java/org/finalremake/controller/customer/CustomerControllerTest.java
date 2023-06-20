@@ -1,11 +1,14 @@
 package org.finalremake.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.dto.customer.CustomerReqDTO;
 import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
 import org.finalremake.data.dto.customer.CustomerResponseDTO;
 import org.finalremake.data.model.customer.Customer;
+import org.finalremake.service.address.AddressServiceImpl;
 import org.finalremake.service.customer.CustomerServiceImpl;
+import org.finalremake.utils.AddressUtils;
 import org.finalremake.utils.CustomerUtils;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Nested;
@@ -32,12 +35,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @ContextConfiguration(classes = {CustomerController.class})
 public class CustomerControllerTest {
     @MockBean private CustomerServiceImpl customerServiceImpl;
+    @MockBean private AddressServiceImpl addressServiceImpl;
     @Autowired private MockMvc mockMvc;
     @Autowired private ObjectMapper objectMapper;
     private Customer customer;
     private CustomerReqDTO customerReqDTO;
     private CustomerResponseDTO customerResponseDTO;
     private CustomerReqUpdateDTO customerReqUpdateDTO;
+    private AddressResponseDTO addressResponseDTO;
 
     @BeforeEach
     void init() {
@@ -45,6 +50,7 @@ public class CustomerControllerTest {
         customerReqDTO = CustomerUtils.getCustomerReqDTO1();
         customerResponseDTO = CustomerUtils.getCustomerResponseDTO1();
         customerReqUpdateDTO = CustomerUtils.getCustomerReqUpdateDTO1();
+        addressResponseDTO = AddressUtils.getAddressResponseDTO1();
     }
 
     @Test
@@ -97,6 +103,16 @@ public class CustomerControllerTest {
 
             verify(customerServiceImpl).getCustomer(anyLong());
             verifyNoMoreInteractions(customerServiceImpl);
+        }
+
+        @Test
+        void getCustomerAddresses_GetAddressesForGivenCustomer_WhenValidId() throws Exception {
+            when(addressServiceImpl.getCustomerAddresses(anyLong())).thenReturn(new ArrayList<>(Arrays.asList(addressResponseDTO)));
+
+            mockMvc.perform(get("/customers/1/addresses"))
+                    .andExpect(jsonPath("[0].id").value(addressResponseDTO.getId()))
+                    .andExpect(jsonPath("[0].city").value(addressResponseDTO.getCity()))
+                    .andExpect(status().isOk());
         }
 
     }

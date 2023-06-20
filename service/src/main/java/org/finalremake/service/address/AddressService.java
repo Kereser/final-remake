@@ -11,7 +11,7 @@ public interface AddressService {
     AddressResponseDTO getAddress(Long id);
     void deleteAddress(Long id);
     List<AddressResponseDTO> getAddresses();
-    List<AddressResponseDTO> getAllCustomerAddresses(Long customerId);
+    List<AddressResponseDTO> getCustomerAddresses(Long customerId);
     AddressResponseDTO createAddress(AddressReqDTO addressReqDTO, Long customerId);
     AddressResponseDTO updateAddress(AddressReqUpdateDTO addressReqUpdateDTO, Long addressId);
 }

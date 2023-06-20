@@ -1,8 +1,10 @@
 package org.finalremake.controller.customer;
 
+import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.dto.customer.CustomerReqDTO;
 import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
 import org.finalremake.data.dto.customer.CustomerResponseDTO;
+import org.finalremake.service.address.AddressServiceImpl;
 import org.finalremake.service.customer.CustomerServiceImpl;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +15,22 @@ import java.util.List;
 @RequestMapping("/customers")
 public class CustomerController {
     private CustomerServiceImpl customerServiceImpl;
+    private AddressServiceImpl addressServiceImpl;
 
-    public CustomerController(CustomerServiceImpl customerServiceImpl) {
+    public CustomerController(CustomerServiceImpl customerServiceImpl, AddressServiceImpl addressServiceImpl) {
         this.customerServiceImpl = customerServiceImpl;
+        this.addressServiceImpl = addressServiceImpl;
     }
 
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.FOUND)
     public CustomerResponseDTO getCustomer(@PathVariable Long id) {
         return customerServiceImpl.getCustomer(id);
+    }
+
+    @GetMapping("/{id}/addresses")
+    public List<AddressResponseDTO> getCustomerAddresses(@PathVariable Long id) {
+        return addressServiceImpl.getCustomerAddresses(id);
     }
 
     @GetMapping

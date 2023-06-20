@@ -35,7 +35,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public List<AddressResponseDTO> getAllCustomerAddresses(Long customerId) {
+    public List<AddressResponseDTO> getCustomerAddresses(Long customerId) {
         return null;
     }
 
