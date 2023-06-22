@@ -1,13 +1,25 @@
 package org.finalremake.utils;
 
 import org.finalremake.data.dto.delivery.DeliveryResponseDTO;
+import org.finalremake.data.model.checkout.Checkout;
 import org.finalremake.data.model.delivery.Delivery;
+import org.finalremake.data.model.product.Product;
+import org.finalremake.data.respository.product.ProductRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
+import java.util.Map;
+import java.util.Optional;
 
 @Component
 public class DeliveryUtils {
+    @Autowired private ProductRepository productRepository;
+
+    public DeliveryUtils(ProductRepository productRepository) {
+        this.productRepository = productRepository;
+    }
+
     public static Delivery getDelivery1() {
         return Delivery.builder()
                 .id(1L)
@@ -50,5 +62,25 @@ public class DeliveryUtils {
                 .payment(PaymentUtils.getPaymentResponseDTO2())
                 .totalAmount(5000.00)
                 .build();
+    }
+
+    public Delivery createDelivery(Checkout checkout) {
+
+        return Delivery.builder()
+                .createdAt(Instant.now())
+                .updatedAt(Instant.now())
+                .address(checkout.getAddress())
+                .payment(checkout.getPayment())
+                .totalAmount(getTotalAmount(checkout.getProductQuantity()))
+                .build();
+    }
+
+    private Double getTotalAmount(Map<Long, Integer> productQuantity) {
+        double totalAmount = 0;
+        for (Long productId : productQuantity.keySet()) {
+            Optional<Product> p = productRepository.findById(productId);
+            totalAmount += p.map(Product::getPrice).orElse(0.0);
+        }
+        return totalAmount;
     }
 }

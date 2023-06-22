@@ -19,6 +19,7 @@ import java.time.Instant;
 public abstract class AbstractEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     @CreatedDate
