@@ -1,6 +1,5 @@
 package org.finalremake.controller.order;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.finalremake.data.dto.order.OrderResponseDTO;
 import org.finalremake.service.order.OrderServiceImpl;
 import org.finalremake.utils.OrderUtils;
@@ -40,7 +39,7 @@ class OrderControllerTest {
         when(orderServiceImpl.createOrder(anyLong())).thenReturn(orderResponseDTO);
 
         mockMvc.perform(post("/orders").param("customerId", "1"))
-                .andExpect(jsonPath("$.payment").value(orderResponseDTO.getPayment()))
+                .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
                 .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
                 .andExpect(status().isCreated());
 
@@ -89,7 +88,7 @@ class OrderControllerTest {
         when(orderServiceImpl.updateOrder(anyLong(), anyLong())).thenReturn(orderResponseDTO);
 
         mockMvc.perform(put("/orders/1").param("customerId", "1"))
-               .andExpect(jsonPath("$.payment").value(orderResponseDTO.getPayment()))
+               .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
                .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
                .andExpect(status().isOk());
 

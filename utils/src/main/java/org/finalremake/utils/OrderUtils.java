@@ -39,9 +39,8 @@ public final class OrderUtils {
                 .id(1L)
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
-                .checkout(CheckoutUtils.getCheckoutResponseDTO1())
                 .delivery(DeliveryUtils.getDeliveryResponseDTO1())
-                .payment(PaymentUtils.getPaymentResponseDTO1())
+                .productQuantity(CheckoutUtils.getCheckout1().getProductQuantity())
                 .status(Boolean.TRUE)
                 .build();
     }
@@ -51,9 +50,8 @@ public final class OrderUtils {
                 .id(2L)
                 .createdAt(Instant.now())
                 .updatedAt(Instant.now())
-                .checkout(CheckoutUtils.getCheckoutResponseDTO2())
                 .delivery(DeliveryUtils.getDeliveryResponseDTO2())
-                .payment(PaymentUtils.getPaymentResponseDTO2())
+                .productQuantity(CheckoutUtils.getCheckout2().getProductQuantity())
                 .status(Boolean.TRUE)
                 .build();
     }

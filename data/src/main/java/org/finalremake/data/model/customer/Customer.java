@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 import org.finalremake.data.model.AbstractEntity;
 import org.finalremake.data.model.address.Address;
 import org.finalremake.data.model.checkout.Checkout;
+import org.finalremake.data.model.order.Order;
 import org.finalremake.data.model.payment.Payment;
 
 import java.util.List;
@@ -43,4 +44,7 @@ public class Customer extends AbstractEntity {
 
     @OneToMany(mappedBy = "customer")
     private List<Payment> payments;
+
+    @OneToMany(mappedBy = "customer")
+    private List<Order> orders;
 }

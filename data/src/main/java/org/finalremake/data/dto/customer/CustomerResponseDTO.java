@@ -6,6 +6,7 @@ import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 import org.finalremake.data.dto.AbstractDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
+import org.finalremake.data.dto.order.OrderResponseDTO;
 import org.finalremake.data.dto.payment.PaymentResponseDTO;
 
 import java.util.List;
@@ -21,4 +22,5 @@ public class CustomerResponseDTO extends AbstractDTO {
     private Integer age;
     private List<AddressResponseDTO> addresses;
     private List<PaymentResponseDTO> payments;
+    private List<OrderResponseDTO> orders;
 }
