@@ -43,16 +43,16 @@ class CheckoutControllerTest {
 
     @Test
     void createCheckout_createOneCheckout_WhenValidPayload() throws Exception {
-        when(checkoutServiceImpl.createCheckout(anyLong(), anyMap())).thenReturn(checkoutResponseDTO);
+        when(checkoutServiceImpl.createCheckout(anyMap(), Mockito.any(CheckoutReqAndReqUpdateDTO.class))).thenReturn(checkoutResponseDTO);
 
         mockMvc.perform(post("/checkouts").param("customerId", "1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(checkoutReqAndReqUpdateDTO)))
                 .andExpect(jsonPath("$.id").value(checkoutResponseDTO.getId()))
-                .andExpect(jsonPath("$.customer").value(checkoutResponseDTO.getCustomer()))
+                .andExpect(jsonPath("$.customer.id").value(checkoutResponseDTO.getCustomer().getId()))
                 .andExpect(status().isCreated());
 
-        verify(checkoutServiceImpl).createCheckout(anyLong(), anyMap());
+        verify(checkoutServiceImpl).createCheckout(anyMap(), Mockito.any(CheckoutReqAndReqUpdateDTO.class));
         verifyNoMoreInteractions(checkoutServiceImpl);
     }
 
@@ -73,8 +73,7 @@ class CheckoutControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(objectMapper.writeValueAsString(checkoutReqAndReqUpdateDTO)))
                 .andExpect(jsonPath("$.id").value(checkoutResponseDTO.getId()))
-                .andExpect(jsonPath("$.customer").value(checkoutResponseDTO.getCustomer()))
-                .andExpect(jsonPath("$.productQuantity").value(checkoutResponseDTO.getProductQuantity()))
+                .andExpect(jsonPath("$.customer.id").value(checkoutResponseDTO.getCustomer().getId()))
                 .andExpect(status().isOk());
 
         verify(checkoutServiceImpl).updateCheckout(anyLong(), anyMap(), Mockito.any(CheckoutReqAndReqUpdateDTO.class));
@@ -86,9 +85,9 @@ class CheckoutControllerTest {
         when(checkoutServiceImpl.getCheckout(anyLong())).thenReturn(checkoutResponseDTO);
 
         mockMvc.perform(get("/checkouts/1"))
-              .andExpect(jsonPath("$.customer").value(checkoutResponseDTO.getCustomer()))
-              .andExpect(jsonPath("$.productQuantity").value(checkoutResponseDTO.getProductQuantity()))
-              .andExpect(status().isOk());
+                .andExpect(jsonPath("$.id").value(checkoutResponseDTO.getId()))
+                .andExpect(jsonPath("$.customer.id").value(checkoutResponseDTO.getCustomer().getId()))
+                .andExpect(status().isFound());
 
         verify(checkoutServiceImpl).getCheckout(anyLong());
         verifyNoMoreInteractions(checkoutServiceImpl);

@@ -9,7 +9,7 @@ import java.util.Map;
 @Service
 public class CheckoutServiceImpl implements CheckoutService {
     @Override
-    public CheckoutResponseDTO createCheckout(Long customerId, Map<Long, Integer> products) {
+    public CheckoutResponseDTO createCheckout(Map<String, Long> params, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO) {
         return null;
     }
 
@@ -24,7 +24,7 @@ public class CheckoutServiceImpl implements CheckoutService {
     }
 
     @Override
-    public CheckoutResponseDTO updateCheckout(Long checkoutId, Map<String, String> allParams, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO) {
+    public CheckoutResponseDTO updateCheckout(Long checkoutId, Map<String, Long> allParams, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO) {
         return null;
     }
 }

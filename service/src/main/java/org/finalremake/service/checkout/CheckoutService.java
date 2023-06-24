@@ -6,8 +6,8 @@ import org.finalremake.data.dto.checkout.CheckoutResponseDTO;
 import java.util.Map;
 
 public interface CheckoutService {
-    CheckoutResponseDTO createCheckout(Long customerId, Map<Long, Integer> products);
+    CheckoutResponseDTO createCheckout(Map<String, Long> params, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO) ;
     void deleteCheckout(Long checkoutId);
     CheckoutResponseDTO getCheckout(Long checkoutId);
-    CheckoutResponseDTO updateCheckout(Long checkoutId, Map<String, String> allParams, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO);
+    CheckoutResponseDTO updateCheckout(Long checkoutId, Map<String, Long> allParams, CheckoutReqAndReqUpdateDTO checkoutReqAndReqUpdateDTO);
 }
