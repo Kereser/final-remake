@@ -14,5 +14,5 @@ import java.util.Map;
 public class OrderResponseDTO extends AbstractDTO {
     private DeliveryResponseDTO delivery;
     private Map<Long, Integer> productQuantity;
-    private Boolean status;
+    private Boolean active;
 }

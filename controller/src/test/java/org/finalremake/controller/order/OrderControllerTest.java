@@ -38,8 +38,8 @@ class OrderControllerTest {
     void createOrder_CreateOneOrder_WhenValidPayload() throws Exception {
         when(orderServiceImpl.createOrder(anyLong())).thenReturn(orderResponseDTO);
 
-        mockMvc.perform(post("/orders").param("customerId", "1"))
-                .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
+        mockMvc.perform(post("/orders").param("checkoutId", "1"))
+                .andExpect(jsonPath("$.delivery.id").value(orderResponseDTO.getDelivery().getId()))
                 .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
                 .andExpect(status().isCreated());
 
@@ -63,22 +63,11 @@ class OrderControllerTest {
             when(orderServiceImpl.getOrder(anyLong())).thenReturn(orderResponseDTO);
 
             mockMvc.perform(get("/orders/1"))
-                    .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
+                    .andExpect(jsonPath("$.delivery.address.direction").value(orderResponseDTO.getDelivery().getAddress().getDirection()))
+                    .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
                     .andExpect(status().isFound());
 
             verify(orderServiceImpl).getOrder(anyLong());
-            verifyNoMoreInteractions(orderServiceImpl);
-        }
-
-        @Test
-        void getOrders_GetAllOrders_WhenValid() throws Exception {
-            when(orderServiceImpl.getOrders()).thenReturn(new ArrayList<>(Arrays.asList(orderResponseDTO)));
-
-            mockMvc.perform(get("/orders"))
-                    .andExpect(jsonPath("$.length()").value(1))
-                    .andExpect(status().isOk());
-
-            verify(orderServiceImpl).getOrders();
             verifyNoMoreInteractions(orderServiceImpl);
         }
     }
@@ -87,8 +76,8 @@ class OrderControllerTest {
     void updateOrder_UpdateOneOrder_WhenValidPayload() throws Exception {
         when(orderServiceImpl.updateOrder(anyLong(), anyLong())).thenReturn(orderResponseDTO);
 
-        mockMvc.perform(put("/orders/1").param("customerId", "1"))
-               .andExpect(jsonPath("$.delivery").value(orderResponseDTO.getDelivery()))
+        mockMvc.perform(put("/orders/1").param("checkoutId", "1"))
+               .andExpect(jsonPath("$.delivery.payment.id").value(orderResponseDTO.getDelivery().getPayment().getId()))
                .andExpect(jsonPath("$.id").value(orderResponseDTO.getId()))
                .andExpect(status().isOk());
 

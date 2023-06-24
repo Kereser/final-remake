@@ -36,5 +36,5 @@ public class Order extends AbstractEntity {
 
     private Map<Long, Integer> productQuantity;
 
-    private Boolean status;
+    private Boolean active;
 }

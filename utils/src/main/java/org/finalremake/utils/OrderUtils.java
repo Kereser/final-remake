@@ -18,7 +18,7 @@ public final class OrderUtils {
                 .checkout(CheckoutUtils.getCheckout1())
                 .delivery(DeliveryUtils.getDelivery1())
                 .payment(PaymentUtils.getPayment1())
-                .status(Boolean.TRUE)
+                .active(Boolean.TRUE)
                 .build();
     }
 
@@ -30,7 +30,7 @@ public final class OrderUtils {
                 .checkout(CheckoutUtils.getCheckout2())
                 .delivery(DeliveryUtils.getDelivery2())
                 .payment(PaymentUtils.getPayment2())
-                .status(Boolean.TRUE)
+                .active(Boolean.TRUE)
                 .build();
     }
 
@@ -41,7 +41,7 @@ public final class OrderUtils {
                 .updatedAt(Instant.now())
                 .delivery(DeliveryUtils.getDeliveryResponseDTO1())
                 .productQuantity(CheckoutUtils.getCheckout1().getProductQuantity())
-                .status(Boolean.TRUE)
+                .active(Boolean.TRUE)
                 .build();
     }
 
@@ -52,7 +52,7 @@ public final class OrderUtils {
                 .updatedAt(Instant.now())
                 .delivery(DeliveryUtils.getDeliveryResponseDTO2())
                 .productQuantity(CheckoutUtils.getCheckout2().getProductQuantity())
-                .status(Boolean.TRUE)
+                .active(Boolean.TRUE)
                 .build();
     }
 }
