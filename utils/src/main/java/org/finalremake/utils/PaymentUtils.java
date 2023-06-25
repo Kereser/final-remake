@@ -88,10 +88,4 @@ public class PaymentUtils {
                 .ACCOUNT_NUMBER("Pepeix@gmail.com")
                 .build();
     }
-
-    public static PaypalPaymentReqDTO newie() {
-        return PaypalPaymentReqDTO.builder()
-              .ACCOUNT_NUMBER("Pepeix@gmail.com")
-              .build();
-    }
 }
