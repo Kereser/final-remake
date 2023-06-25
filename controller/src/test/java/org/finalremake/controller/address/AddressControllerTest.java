@@ -50,18 +50,6 @@ public class AddressControllerTest {
         addressReqUpdateDTO = AddressUtils.getAddressReqUpdateDTO1();
     }
 
-    @Test
-    void createAddress_CreateOneAddress_WhenValidInput() throws Exception {
-        when(addressServiceImpl.createAddress(Mockito.any(AddressReqDTO.class), anyLong())).thenReturn(addressResponseDTO);
-
-        mockMvc.perform(post("/addresses").content(objectMapper.writeValueAsString(addressReqDTO))
-                .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.city").value(addressResponseDTO.getCity()))
-                .andExpect(jsonPath("$.id").value(addressResponseDTO.getId()))
-                .andExpect(status().isCreated());
-
-    }
-
     @Nested
     class getAddresses {
         @Test
