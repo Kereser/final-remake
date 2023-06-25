@@ -1,6 +1,7 @@
 package org.finalremake.controller.customer;
 
 import jakarta.validation.Valid;
+import org.finalremake.data.dto.address.AddressReqDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.dto.customer.CustomerReqDTO;
 import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
@@ -36,11 +37,6 @@ public class CustomerController {
         return customerServiceImpl.getCustomer(id);
     }
 
-    @GetMapping("/{id}/addresses")
-    public List<AddressResponseDTO> getCustomerAddresses(@PathVariable Long id) {
-        return addressServiceImpl.getCustomerAddresses(id);
-    }
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     public List<CustomerResponseDTO> getCustomers() {
@@ -63,6 +59,22 @@ public class CustomerController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteCustomer(@PathVariable Long id) {
         customerServiceImpl.deleteCustomer(id);
+    }
+
+    @RestController
+    @RequestMapping("/customers/{id}/addresses")
+    class CustomerAddresses {
+        @GetMapping
+        @ResponseStatus(HttpStatus.OK)
+        public List<AddressResponseDTO> getCustomerAddresses(@PathVariable Long id) {
+            return addressServiceImpl.getCustomerAddresses(id);
+        }
+
+        @PostMapping
+        @ResponseStatus(HttpStatus.CREATED)
+        public AddressResponseDTO createCustomerAddress(@RequestBody @Valid AddressReqDTO addressReqDTO, @PathVariable Long id) {
+            return addressServiceImpl.createAddress(addressReqDTO, id);
+        }
     }
 
     @RestController
