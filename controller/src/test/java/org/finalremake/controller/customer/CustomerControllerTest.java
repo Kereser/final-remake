@@ -1,6 +1,7 @@
 package org.finalremake.controller.customer;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.finalremake.data.dto.address.AddressReqDTO;
 import org.finalremake.data.dto.address.AddressResponseDTO;
 import org.finalremake.data.dto.customer.CustomerReqDTO;
 import org.finalremake.data.dto.customer.CustomerReqUpdateDTO;
@@ -39,7 +40,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @WebMvcTest
 @ContextConfiguration(classes = {CustomerController.class})
-public class CustomerControllerTest {
+class CustomerControllerTest {
     @MockBean private CustomerServiceImpl customerServiceImpl;
     @MockBean private AddressServiceImpl addressServiceImpl;
     @MockBean private PaymentServiceImpl paymentServiceImpl;
@@ -50,6 +51,7 @@ public class CustomerControllerTest {
     private CustomerResponseDTO customerResponseDTO;
     private CustomerReqUpdateDTO customerReqUpdateDTO;
     private AddressResponseDTO addressResponseDTO;
+    private AddressReqDTO addressReqDTO;
     private PaymentResponseDTO paymentResponseDTOCC;
     private CreditCardPaymentReqDTO creditCardPaymentReqDTO;
     private PaymentResponseDTO paymentResponseDTODC;
@@ -64,6 +66,7 @@ public class CustomerControllerTest {
         customerResponseDTO = CustomerUtils.getCustomerResponseDTO1();
         customerReqUpdateDTO = CustomerUtils.getCustomerReqUpdateDTO1();
         addressResponseDTO = AddressUtils.getAddressResponseDTO1();
+        addressReqDTO = AddressUtils.getAddressReqDTO1();
 
         creditCardPaymentReqDTO = PaymentUtils.getCreditCardPaymentReqDTO();
         paymentResponseDTOCC = PaymentUtils.getPaymentResponseDTO1();
@@ -152,6 +155,20 @@ public class CustomerControllerTest {
                     .andExpect(jsonPath("[0].id").value(addressResponseDTO.getId()))
                     .andExpect(jsonPath("[0].city").value(addressResponseDTO.getCity()))
                     .andExpect(status().isOk());
+        }
+
+        @Test
+        void createCustomerAddress_CreateAddress_WhenValidPayload() throws Exception {
+            when(addressServiceImpl.createAddress(Mockito.any(AddressReqDTO.class), anyLong())).thenReturn(addressResponseDTO);
+
+            mockMvc.perform(post("/customers/1/addresses").content(objectMapper.writeValueAsString(addressReqDTO))
+                           .contentType(MediaType.APPLICATION_JSON))
+                   .andExpect(jsonPath("$.id").value(addressResponseDTO.getId()))
+                   .andExpect(jsonPath("$.city").value(addressResponseDTO.getCity()))
+                   .andExpect(status().isCreated());
+
+            verify(addressServiceImpl).createAddress(Mockito.any(AddressReqDTO.class), anyLong());
+            verifyNoMoreInteractions(addressServiceImpl);
         }
     }
 
